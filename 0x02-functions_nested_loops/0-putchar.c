@@ -7,13 +7,15 @@
  **/
 int main(void)
 {
-        char ermias[] = "_putchar";
+	char ermias[] = "_putchar";
 
-        int c;
+	int c;
 
-        for (c = 0; c < 8; c++)
-        {_putchar(ermias[c]);
-        }
-        _putchar('\n');
-        return (0);
+	for (c = 0; c < 8; c++)
+
+	{
+		_putchar(ermias[c]);
+	}
+	_putchar('\n');
+	return (0);
 }
