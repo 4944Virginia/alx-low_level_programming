@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-int main(void){
-	
-	printf("_putchar/n");
+int main(){
+	putchar("_putchar/n");
 	return(0);
 }
