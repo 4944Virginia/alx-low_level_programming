@@ -1,5 +1,5 @@
-#include "main.h"
 #include <stdio.h>
+#include "main.h"
 
 /**
  * print_array - a function that prints n elements of an array
@@ -17,3 +17,4 @@ void print_array(int *a, int n)
 			printf("%d", a[n - 1]);
 	printf("\n");
 }
+© 2022 GitHub, Inc.
