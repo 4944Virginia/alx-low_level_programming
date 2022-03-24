@@ -3,10 +3,10 @@
 /**
  * rot13 - Entry point
  * ONE if, TWO loops only...
- * @n: input
+ * @*: input
  * Return: decrypted string
  */
-char *rot13(char *n)
+char *rot13(char *)
 {
 	int x, rot_c = 13, i = 0;
 	char toswap[] = {'A', 'N', 'a', 'n', 'B', 'O', 'b', 'o', 'C', 'P',
@@ -15,11 +15,11 @@ char *rot13(char *n)
 		'J', 'W', 'j', 'w', 'K', 'X', 'k', 'x', 'L', 'Y', 'l', 'y', 'M',
 		'Z', 'm', 'z'};
 
-	while (n[i] != '\0')
+	while (*[i] != '\0')
 	{
 		for (x = 0; x <= 51; x++)
 		{
-			if (n[i] == toswap[x])
+			if (*[i] == toswap[x])
 			{
 				n[i] = n[i] + rot_c;
 				x = 51;
@@ -28,5 +28,5 @@ char *rot13(char *n)
 		}
 		i++;
 	}
-	return (n);
+	return (*);
 }
