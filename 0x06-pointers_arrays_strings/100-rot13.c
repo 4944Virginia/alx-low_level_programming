@@ -1,32 +1,32 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
-  * rot13 - Entry point
+ * rot13 - Entry point
  * ONE if, TWO loops only...
- * @*: input
+ * @n: input
  * Return: decrypted string
  */
-char *rot13(char *)
+char *rot13(char *n)
 {
-	char *input, *output;
-	int count, count2;
+	int x, rot_c = 13, i = 0;
+	char toswap[] = {'A', 'N', 'a', 'n', 'B', 'O', 'b', 'o', 'C', 'P',
+		'c', 'p', 'D', 'Q', 'd', 'q', 'E', 'R', 'e', 'r', 'F', 'S', 'f',
+		's', 'G', 'T', 'g', 't', 'H', 'U', 'h', 'u', 'I', 'V', 'i', 'v',
+		'J', 'W', 'j', 'w', 'K', 'X', 'k', 'x', 'L', 'Y', 'l', 'y', 'M',
+		'Z', 'm', 'z'};
 
-	input = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	output = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-	count = 0;
-	while (*[count] != '\0')
+	while (n[i] != '\0')
 	{
-		count2 = 0;
-		while (input[count2] != '\0')
+		for (x = 0; x <= 51; x++)
 		{
-			if (*[count] == input[count2])
+			if (n[i] == toswap[x])
 			{
-				str[count] = output[count2];
-				break;
+				n[i] = n[i] + rot_c;
+				x = 51;
 			}
-			count2++;
+			rot_c = rot_c * -1;
 		}
-		count++;
+		i++;
 	}
-	return (*);
+	return (n);
 }
