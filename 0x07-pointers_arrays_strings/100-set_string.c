@@ -1,17 +1,30 @@
 #include "main.h"
 #include <stdio.h>
-
 /**
- * set_string-sets the value of a pointer to a char
- *
- * Return: Always 0.
- */
-void set_string(char **s, char *to){
-	char *s0 = "Bob Dylan";
-    char *s1 = "Robert Allen";
+  *print_diagsums - prints sum of two diagonals of a square.
+  *@a: pointer to array.
+  *@size: size of array.
+  *
+  *Return: void.
+  */
+void print_diagsums(int *a, int size)
+{
+	int i, size1;
+	unsigned int sumDiag1, sumDiag2;
 
-    printf("%s, %s\n", s0, s1);
-    set_string(&s1, s0);
-    printf("%s, %s\n", s0, s1);
-    return (0);
+	size1 = 0;
+	sumDiag1 = 0;
+	sumDiag2 = 0;
+
+	size1 = (size * size) - 1;
+
+	for (i = 0; i <= size1; i = i + (size + 1))
+	{
+		sumDiag1 = sumDiag1 + a[i];
+	}
+	for (i = (size - 1); i < size1; i = i + (size - 1))
+	{
+		sumDiag2 = sumDiag2 + a[i];
+	}
+	printf("%d, %d\n", sumDiag1, sumDiag2);
 }
