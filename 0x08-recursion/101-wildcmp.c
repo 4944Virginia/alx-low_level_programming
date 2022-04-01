@@ -1,70 +1,50 @@
 #include "main.h"
 
-int check_path(char *S1, char *s2);
-char *move_char(char *s2);
-
+int recursive_check(char *s1, char *s2, int wildC);
 /**
- * wildcmp - compares 2 strings
- * @s1: string to be compared
- * @s2: string to be compared
+ * wildcmp - compares two strings, supports wildcard '*'
  *
- * Return: returns numeral value
+ * @s1: string 1 to compare to s2
+ * @s2: string 2 to compare to s1
+ * @wildC: counter to see if wildcard is present
+ * Return: 1 if identical, 0 otherwise, -1 for error
  */
 int wildcmp(char *s1, char *s2)
 {
-	int i = 0;
-
-	if (*s1 == '\0' && *s2 == '*' && !*move_char(s2))
+	return (recursive_check(s1, s2, 0));
+}
+/**
+ * recursive_check - checks for wild cards recursively
+ *
+ * @s1: string 1 to check (no wild cards)
+ * @s2: string to to check (can contain wildcards)
+ * @wildC: counter to see if wildcard is present
+ *
+ * Return: 1 if identical, 0 for not, -1 for error
+ */
+int recursive_check(char *s1, char *s2, int wildC)
+{
+	if (*s1 == '\0' && *s2 == '\0')
+	{
 		return (1);
-	if (*s1 == *s2)
-	{
-		if (*s1 == '\0')
-			return (1);
-	return (wildcmp(s1 + 1, s2 + 1));
 	}
-	if (*s1 == '\0' || *s2 == '\0')
-		return (0);
-	if (*s2 == '*')
+	if (s2 == '')
+		return (recursive_check(s1, s2 + 1, ++wildC));
+	else if (*s1 != *s2 && wildC > 0)
 	{
-		s2 = move_char(s2);
-		if (*s2 == '\0')
-			return (1);
-		if (*s1 == *s2)
-			i += wildcmp(s1 + 1, s2 + 1);
-		i += check_path(s1 + 1, s2);
-		return (!!i);
+		if (!*s1)
+			return (0);
+		return (recursive_check(s1 + 1, s2, wildC));
 	}
-	return (0);
-}
-
-/**
- *check_path - checks recursively for all the paths when the
- * characters are equal
- * @s1: first string
- * @s2: second string
- *
- * Return: return value of wildcmp() or of itself
- */
-int check_path(char *s1, char *s2)
-{
-	if (*s1 == '\0')
+	else if (*s1 == *s2 && wildC == 0)
+		return (recursive_check(s1 + 1, s2 + 1, 0));
+	else if (*s1 == *s2 && wildC > 0)
+	{
+		if (!recursive_check(s1 + 1, s2 + 1, 0))
+			return (recursive_check(s1 + 1, s2, wildC));
+		return (recursive_check(s1 + 1, s2 + 1, wildC));
+	}
+	else if (*s1 != *s2 && wildC == 0)
 		return (0);
-	if (*s1 == *s2)
-		return (wildcmp(s1, s2));
-	return  (check_path(s1 + 1, s2));
-
-}
-
-/**
- * *move_char - moves the current char past the *
- * @s2: string to iterate over
- *
- * Return: the address of the character after the *
- */
-char *move_char(char *s2)
-{
-	if (*s2 == '*')
-		return (move_char(s2 + 1));
-	else
-		return (s2);
+	return (-1);
 }
