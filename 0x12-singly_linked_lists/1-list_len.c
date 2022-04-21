@@ -1,15 +1,23 @@
 #include "lists.h"
+#include <stdio.h>
 
 /**
-  * list_len - fills memory with a constant byte
-  * @h: is the owner of the dog
-  * Return: a number
-  */
+ * list_len - returns number of nodes starting at element h
+ *
+ * @h: first node of linked list to count from
+ *
+ * Return: number of nodes printed
+ */
 size_t list_len(const list_t *h)
 {
-	size_t i;
+	size_t len = 0;
 
-	for (i = 0; h != NULL; i++)
+	if (h == NULL)
+		return (0);
+	while (h != NULL)
+	{
+		len++;
 		h = h->next;
-;	return (i);
+	}
+	return (len);
 }
